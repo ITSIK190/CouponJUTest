@@ -6,6 +6,7 @@ package a.admin;
 import static org.junit.Assert.*;
 
 import java.io.StringReader;
+import java.util.ArrayList;
 
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
@@ -23,6 +24,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 
 import a.all.AllTests;
+import a.all.UnMarHelpers;
+import c.hlp.CompanyResponce;
 import core.beans.Company;
 import core.beans.Customer;
 
@@ -64,39 +67,66 @@ public class AdminTestCase {
 	@Test
 	public void test010createCompanyService() {
 
-		System.out.println(AllTests.service);
+		
 		AllTests.token = AllTests.service.path("Admin").path("createCompanyService").queryParam("User", "Admin")
 				.queryParam("PW", "Admin").queryParam("Email", "comp1").queryParam("name", "comp1")
-				.queryParam("CompanyPw", "comp1").accept(MediaType.TEXT_HTML).get(String.class);
+				.queryParam("CompanyPw", "comp1").accept(MediaType.APPLICATION_XML).get(String.class);
 		System.out.println("Token: " + AllTests.token);
 
-		assertEquals("success", AllTests.token);
+		CompanyResponce companyResponce = new CompanyResponce();
+		try {
+			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
+		} catch (JAXBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			fail(e1.getMessage());
+		}
+		System.out.println(companyResponce.getMessage());
+		assertEquals("success", companyResponce.getMessage());
 
 	}
 
 	@Test
 	public void test020createCompanyWithSameName() {
 
-		System.out.println(AllTests.service);
+		
 		AllTests.token = AllTests.service.path("Admin").path("createCompanyService").queryParam("User", "Admin")
 				.queryParam("PW", "Admin").queryParam("Email", "comp1").queryParam("name", "comp1")
-				.queryParam("CompanyPw", "comp1").accept(MediaType.TEXT_HTML).get(String.class);
+				.queryParam("CompanyPw", "comp1").accept(MediaType.APPLICATION_XML).get(String.class);
 		System.out.println("Token: " + AllTests.token);
 
-		assertEquals("error: Name exists", AllTests.token);
+		
+		
+		CompanyResponce companyResponce = new CompanyResponce();
+		try {
+			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
+		} catch (JAXBException e1) {
+			// TODO Auto-generated catch block
+			fail(e1.getMessage());
+		}
+		System.out.println(companyResponce.getMessage());
+		assertEquals("error: Name exists", companyResponce.getMessage());
 
 	}
 
 	@Test
 	public void test030updateCompanyService() {
 
-		System.out.println(AllTests.service);
+		
 		AllTests.token = AllTests.service.path("Admin").path("updateCompanyService").queryParam("User", "Admin")
 				.queryParam("PW", "Admin").queryParam("Email", "comp1").queryParam("name", "comp1")
-				.queryParam("CompanyPw", "comp1").accept(MediaType.TEXT_HTML).get(String.class);
+				.queryParam("CompanyPw", "comp1").accept(MediaType.APPLICATION_XML).get(String.class);
 		System.out.println("Token: " + AllTests.token);
 
-		assertEquals("success", AllTests.token);
+		CompanyResponce companyResponce = new CompanyResponce();
+		try {
+			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
+		} catch (JAXBException e1) {
+			// TODO Auto-generated catch block
+			fail(e1.getMessage());
+		}
+		System.out.println(companyResponce.getMessage());
+		assertEquals("success", companyResponce.getMessage());
 
 	}
 
@@ -104,38 +134,51 @@ public class AdminTestCase {
 	@Test
 	public void test040getCompanyService() {
 
-		System.out.println(AllTests.service);
+		
 		AllTests.token = AllTests.service.path("Admin").path("getCompanyService").queryParam("User", "Admin")
-				.queryParam("PW", "Admin").queryParam("Email", "comp2").accept(MediaType.APPLICATION_XML)
+				.queryParam("PW", "Admin").queryParam("Email", "comp1").accept(MediaType.APPLICATION_XML)
 				.get(String.class);
 		System.out.println("Token: " + AllTests.token);
-		Company company = new Company();
-		JAXBContext jaxbContext;
+		
+		
+		CompanyResponce companyResponce = new CompanyResponce();
 		try {
-			jaxbContext = JAXBContext.newInstance(Company.class);
-			StringReader reader = new StringReader(AllTests.token);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			company = (Company) jaxbUnmarshaller.unmarshal(reader);
-			System.out.println(company);
-		} catch (JAXBException e) {
+			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
+		} catch (JAXBException e1) {
 			// TODO Auto-generated catch block
-			fail(e.getMessage());
+			fail(e1.getMessage());
 		}
+		
+		ArrayList<Company> companies = companyResponce.getCompanies();
+		Company company = companies.get(0);
+		
+		System.out.println(company);
 		assertEquals(company.getName(), "comp1");
-		assertThat(AllTests.token,
-				CoreMatchers.containsString("<name>comp1</name><password>comp1</password></company>"));
+		assertEquals("success", companyResponce.getMessage());
+		
 
 	}
 
 	@Test
 	public void test050removeCompanyService() {
 
-		System.out.println(AllTests.service);
+		
 		AllTests.token = AllTests.service.path("Admin").path("removeCompanyService").queryParam("User", "Admin")
-				.queryParam("PW", "Admin").queryParam("Email", "comp1").accept(MediaType.TEXT_HTML).get(String.class);
+				.queryParam("PW", "Admin").queryParam("Email", "comp1").accept(MediaType.APPLICATION_XML).get(String.class);
 		System.out.println("Token: " + AllTests.token);
 
-		assertEquals("success", AllTests.token);
+		
+		
+		
+		CompanyResponce companyResponce = new CompanyResponce();
+		try {
+			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
+		} catch (JAXBException e1) {
+			// TODO Auto-generated catch block
+			fail(e1.getMessage());
+		}
+		System.out.println(companyResponce.getMessage());
+		assertEquals("success", companyResponce.getMessage());
 
 	}
 

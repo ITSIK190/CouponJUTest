@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="C:/Users/Itsik/Documents/JB QA/ProjectCS/WebCS/WebContent/WEB-INF/lib/jersey-server-1.18.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Itsik/Documents/JB QA/ProjectCS/WebCS/WebContent/WEB-INF/lib/jersey-servlet-1.18.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Itsik/Desktop/CS.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Itsik/Desktop/CSWeb.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
