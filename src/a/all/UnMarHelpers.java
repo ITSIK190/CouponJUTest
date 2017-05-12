@@ -8,30 +8,30 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import c.hlp.CompanyResponce;
+import c.hlp.CompanyResponse;
 import core.beans.Company;
 
 public class UnMarHelpers {
 	
 	
-	public static CompanyResponce unmarshallCompany(String token) throws JAXBException{
+	public static CompanyResponse unmarshallCompany(String token) throws JAXBException{
 		
 		
-		CompanyResponce copanyResponce = new CompanyResponce();
+		CompanyResponse copanyResponse = new CompanyResponse();
 		
 		
 		JAXBContext jaxbContext;
 		
-			jaxbContext = JAXBContext.newInstance(CompanyResponce.class);
+			jaxbContext = JAXBContext.newInstance(CompanyResponse.class);
 			StringReader reader = new StringReader(AllTests.token);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			copanyResponce = (CompanyResponce) jaxbUnmarshaller.unmarshal(reader);
-			System.out.println(copanyResponce);
+			copanyResponse = (CompanyResponse) jaxbUnmarshaller.unmarshal(reader);
+			System.out.println(copanyResponse);
 		
 		
 		
 		
-		return copanyResponce;
+		return copanyResponse;
 		
 	}
 

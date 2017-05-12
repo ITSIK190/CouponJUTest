@@ -25,7 +25,8 @@ import org.junit.Test;
 
 import a.all.AllTests;
 import a.all.UnMarHelpers;
-import c.hlp.CompanyResponce;
+import c.hlp.CompanyResponse;
+import c.hlp.CompanyResponse;
 import core.beans.Company;
 import core.beans.Customer;
 
@@ -34,7 +35,7 @@ import core.beans.Customer;
  *
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AdminTestCase {
+public class AdminCreateTC {
 
 	/**
 	 * @throws java.lang.Exception
@@ -73,16 +74,16 @@ public class AdminTestCase {
 				.queryParam("CompanyPw", "comp1").accept(MediaType.APPLICATION_XML).get(String.class);
 		System.out.println("Token: " + AllTests.token);
 
-		CompanyResponce companyResponce = new CompanyResponce();
+		CompanyResponse companyResponse = new CompanyResponse();
 		try {
-			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
+			companyResponse = UnMarHelpers.unmarshallCompany(AllTests.token);
 		} catch (JAXBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			fail(e1.getMessage());
 		}
-		System.out.println(companyResponce.getMessage());
-		assertEquals("success", companyResponce.getMessage());
+		System.out.println(companyResponse.getMessage());
+		assertEquals("success", companyResponse.getMessage());
 
 	}
 
@@ -97,15 +98,15 @@ public class AdminTestCase {
 
 		
 		
-		CompanyResponce companyResponce = new CompanyResponce();
+		CompanyResponse companyResponse = new CompanyResponse();
 		try {
-			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
+			companyResponse = UnMarHelpers.unmarshallCompany(AllTests.token);
 		} catch (JAXBException e1) {
 			// TODO Auto-generated catch block
 			fail(e1.getMessage());
 		}
-		System.out.println(companyResponce.getMessage());
-		assertEquals("error: Name exists", companyResponce.getMessage());
+		System.out.println(companyResponse.getMessage());
+		assertEquals("error: Name exists", companyResponse.getMessage());
 
 	}
 
@@ -118,68 +119,19 @@ public class AdminTestCase {
 				.queryParam("CompanyPw", "comp1").accept(MediaType.APPLICATION_XML).get(String.class);
 		System.out.println("Token: " + AllTests.token);
 
-		CompanyResponce companyResponce = new CompanyResponce();
+		CompanyResponse companyResponse = new CompanyResponse();
 		try {
-			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
+			companyResponse = UnMarHelpers.unmarshallCompany(AllTests.token);
 		} catch (JAXBException e1) {
 			// TODO Auto-generated catch block
 			fail(e1.getMessage());
 		}
-		System.out.println(companyResponce.getMessage());
-		assertEquals("success", companyResponce.getMessage());
+		System.out.println(companyResponse.getMessage());
+		assertEquals("success", companyResponse.getMessage());
 
 	}
 
-	// getcomp
-	@Test
-	public void test040getCompanyService() {
+	
 
-		
-		AllTests.token = AllTests.service.path("Admin").path("getCompanyService").queryParam("User", "Admin")
-				.queryParam("PW", "Admin").queryParam("Email", "comp1").accept(MediaType.APPLICATION_XML)
-				.get(String.class);
-		System.out.println("Token: " + AllTests.token);
-		
-		
-		CompanyResponce companyResponce = new CompanyResponce();
-		try {
-			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
-		} catch (JAXBException e1) {
-			// TODO Auto-generated catch block
-			fail(e1.getMessage());
-		}
-		
-		ArrayList<Company> companies = companyResponce.getCompanies();
-		Company company = companies.get(0);
-		
-		System.out.println(company);
-		assertEquals(company.getName(), "comp1");
-		assertEquals("success", companyResponce.getMessage());
-		
-
-	}
-
-	@Test
-	public void test050removeCompanyService() {
-
-		
-		AllTests.token = AllTests.service.path("Admin").path("removeCompanyService").queryParam("User", "Admin")
-				.queryParam("PW", "Admin").queryParam("Email", "comp1").accept(MediaType.APPLICATION_XML).get(String.class);
-		System.out.println("Token: " + AllTests.token);
-
-		
-		
-		
-		CompanyResponce companyResponce = new CompanyResponce();
-		try {
-			companyResponce = UnMarHelpers.unmarshallCompany(AllTests.token);
-		} catch (JAXBException e1) {
-			// TODO Auto-generated catch block
-			fail(e1.getMessage());
-		}
-		System.out.println(companyResponce.getMessage());
-		assertEquals("success", companyResponce.getMessage());
-
-	}
 
 }
