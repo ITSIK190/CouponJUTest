@@ -1,4 +1,4 @@
-package c.customer;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CustomerListTC {
+public class CompanyListTC {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package a.admin;
+package test;
 
 import static org.junit.Assert.*;
 

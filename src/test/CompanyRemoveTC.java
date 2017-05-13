@@ -1,4 +1,4 @@
-package b.company;
+package test;
 
 import static org.junit.Assert.*;
 
