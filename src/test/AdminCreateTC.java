@@ -26,6 +26,7 @@ import org.junit.Test;
 import a.all.AllTests;
 import a.all.UnMarHelpers;
 import c.hlp.CompanyResponse;
+import c.hlp.CustomerResponse;
 import c.hlp.CompanyResponse;
 import core.beans.Company;
 import core.beans.Customer;
@@ -92,8 +93,8 @@ public class AdminCreateTC {
 
 		
 		AllTests.token = AllTests.service.path("Admin").path("createCompanyService").queryParam("User", "Admin")
-				.queryParam("PW", "Admin").queryParam("Email", "comp1").queryParam("name", "comp1")
-				.queryParam("CompanyPw", "comp1").accept(MediaType.APPLICATION_XML).get(String.class);
+				.queryParam("PW", "Admin").queryParam("Email", "comp1").queryParam("name", "comp0")
+				.queryParam("CompanyPw", "comp0").accept(MediaType.APPLICATION_XML).get(String.class);
 		System.out.println("Token: " + AllTests.token);
 
 		
@@ -131,7 +132,49 @@ public class AdminCreateTC {
 
 	}
 
-	
+	@Test
+	public void test040createCustomerService() {
 
+		
+		AllTests.token = AllTests.service.path("Admin").path("createCustomerService").queryParam("User", "Admin")
+				.queryParam("PW", "Admin").queryParam("Email", "cust1").queryParam("name", "cust0")
+				.queryParam("CustomerPw", "cust0").accept(MediaType.APPLICATION_XML).get(String.class);
+		System.out.println("Token: " + AllTests.token);
+
+		CustomerResponse customerResponse = new CustomerResponse();
+		try {
+			customerResponse = UnMarHelpers.unmarshallCustomer(AllTests.token);
+		} catch (JAXBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			fail(e1.getMessage());
+		}
+		System.out.println(customerResponse.getMessage());
+		assertEquals("success", customerResponse.getMessage());
+
+	}
+
+	
+	@Test
+	public void test050updateCustomerService() {
+
+		
+		AllTests.token = AllTests.service.path("Admin").path("updateCustomerService").queryParam("User", "Admin")
+				.queryParam("PW", "Admin").queryParam("Email", "cust1").queryParam("name", "cust1")
+				.queryParam("CustomerPw", "cust1").accept(MediaType.APPLICATION_XML).get(String.class);
+		System.out.println("Token: " + AllTests.token);
+
+		CustomerResponse customerResponse = new CustomerResponse();
+		try {
+			customerResponse = UnMarHelpers.unmarshallCustomer(AllTests.token);
+		} catch (JAXBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			fail(e1.getMessage());
+		}
+		System.out.println(customerResponse.getMessage());
+		assertEquals("success", customerResponse.getMessage());
+
+	}
 
 }

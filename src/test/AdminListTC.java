@@ -18,8 +18,10 @@ import org.junit.runners.MethodSorters;
 import a.all.AllTests;
 import a.all.UnMarHelpers;
 import c.hlp.CompanyResponse;
+import c.hlp.CouponResponse;
 import c.hlp.CustomerResponse;
 import core.beans.Company;
+import core.beans.Coupon;
 import core.beans.Customer;
 
 
@@ -176,14 +178,42 @@ public class AdminListTC {
 				fail(e1.getMessage());
 			}
 			
-			assertEquals("success", companyResponse.getMessage());
-			ArrayList<Company> companies = companyResponse.getCompanies();
+			assertEquals("success", couponResponse.getMessage());
+			ArrayList<Coupon> coupons = couponResponse.getCoupons();
 			
 			
-			Company company = companies.get(0);
+			Coupon coupon = coupons.get(0);
 			
-			System.out.println(company);
-			assertEquals(company.getName(), "comp1");
+			System.out.println(coupon);
+			assertEquals(coupon.getTitle(), "coup1");
+		}
+		
+		@Test
+		public void test060getCouponByCompanyService() {
+
+			
+			AllTests.token = AllTests.service.path("Admin").path("getCouponByCompanyService").queryParam("User", "Admin")
+					.queryParam("PW", "Admin").queryParam("Email", "comp1").accept(MediaType.APPLICATION_XML)
+					.get(String.class);
+			System.out.println("Token: " + AllTests.token);
+			
+			
+			CouponResponse couponResponse = new CouponResponse();
+			try {
+				couponResponse = UnMarHelpers.unmarshallCoupon(AllTests.token);
+			} catch (JAXBException e1) {
+				// TODO Auto-generated catch block
+				fail(e1.getMessage());
+			}
+			
+			assertEquals("success", couponResponse.getMessage());
+			ArrayList<Coupon> coupons = couponResponse.getCoupons();
+			
+			
+			Coupon coupon = coupons.get(0);
+			
+			System.out.println(coupon);
+			assertEquals(coupon.getTitle(), "coup1");
 		}
 		
 }

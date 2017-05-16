@@ -16,6 +16,7 @@ import org.junit.runners.MethodSorters;
 import a.all.AllTests;
 import a.all.UnMarHelpers;
 import c.hlp.CompanyResponse;
+import c.hlp.CustomerResponse;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -39,7 +40,7 @@ public class AdminRemoveTC {
 
 
 	@Test
-	public void test050removeCompanyService() {
+	public void test010removeCompanyService() {
 
 		
 		AllTests.token = AllTests.service.path("Admin").path("removeCompanyService").queryParam("User", "Admin")
@@ -60,5 +61,32 @@ public class AdminRemoveTC {
 		assertEquals("success", companyResponse.getMessage());
 
 	}
+	
+	
+
+	@Test
+	public void test020removeCustomerService() {
+
+		
+		AllTests.token = AllTests.service.path("Admin").path("removeCustomerService").queryParam("User", "Admin")
+				.queryParam("PW", "Admin").queryParam("Email", "cust1").accept(MediaType.APPLICATION_XML).get(String.class);
+		System.out.println("Token: " + AllTests.token);
+
+		
+		
+		
+		CustomerResponse customerResponse = new CustomerResponse();
+		try {
+			customerResponse = UnMarHelpers.unmarshallCustomer(AllTests.token);
+		} catch (JAXBException e1) {
+			// TODO Auto-generated catch block
+			fail(e1.getMessage());
+		}
+		System.out.println(customerResponse.getMessage());
+		assertEquals("success", customerResponse.getMessage());
+
+	}
+	
+	
 
 }
