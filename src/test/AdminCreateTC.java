@@ -93,7 +93,7 @@ public class AdminCreateTC {
 
 		
 		AllTests.token = AllTests.service.path("Admin").path("createCompanyService").queryParam("User", "Admin")
-				.queryParam("PW", "Admin").queryParam("Email", "comp1").queryParam("name", "comp0")
+				.queryParam("PW", "Admin").queryParam("Email", "comp1").queryParam("name", "comp1")
 				.queryParam("CompanyPw", "comp0").accept(MediaType.APPLICATION_XML).get(String.class);
 		System.out.println("Token: " + AllTests.token);
 

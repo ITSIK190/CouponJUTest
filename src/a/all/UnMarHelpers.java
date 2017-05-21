@@ -38,7 +38,7 @@ public class UnMarHelpers {
 
 		JAXBContext jaxbContext;
 
-		jaxbContext = JAXBContext.newInstance(CompanyResponse.class);
+		jaxbContext = JAXBContext.newInstance(CustomerResponse.class);
 		StringReader reader = new StringReader(AllTests.token);
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 		customerResponse = (CustomerResponse) jaxbUnmarshaller.unmarshal(reader);
@@ -54,7 +54,7 @@ public class UnMarHelpers {
 
 		JAXBContext jaxbContext;
 
-		jaxbContext = JAXBContext.newInstance(CompanyResponse.class);
+		jaxbContext = JAXBContext.newInstance(CouponResponse.class);
 		StringReader reader = new StringReader(AllTests.token);
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 		couponResponse = (CouponResponse) jaxbUnmarshaller.unmarshal(reader);

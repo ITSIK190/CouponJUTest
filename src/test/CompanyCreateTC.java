@@ -37,8 +37,8 @@ public class CompanyCreateTC {
 	@Test
 	public void test010createCouponService() {
 
-		AllTests.token = AllTests.service.path("Admin").path("createCouponService").queryParam("User", "Admin")
-				.queryParam("PW", "Admin").queryParam("Title", "coup1").queryParam("StartDate", "2017-01-01")
+		AllTests.token = AllTests.service.path("Company").path("createCouponService").queryParam("User", "comp1")
+				.queryParam("PW", "comp1").queryParam("Title", "coup1").queryParam("StartDate", "2017-01-01")
 				.queryParam("EndDate", "2018-12-31").queryParam("Amount", "5").queryParam("Type", "CAMPING")
 				.queryParam("Message", "coup0").queryParam("Price", "12.34").queryParam("Image", "coup0")
 				.accept(MediaType.APPLICATION_XML).get(String.class);
@@ -61,8 +61,8 @@ public class CompanyCreateTC {
 	@Test
 	public void test020updateCouponService() {
 
-		AllTests.token = AllTests.service.path("Admin").path("updateCouponService").queryParam("User", "Admin")
-				.queryParam("PW", "Admin").queryParam("Title", "coup1").queryParam("StartDate", "2016-01-01")
+		AllTests.token = AllTests.service.path("Company").path("updateCouponService").queryParam("User", "comp1")
+				.queryParam("PW", "comp1").queryParam("Title", "coup1").queryParam("StartDate", "2016-01-01")
 				.queryParam("EndDate", "2019-12-31").queryParam("Amount", "10").queryParam("Type", "RESTAURANTS")
 				.queryParam("Message", "coup1").queryParam("Price", "12.34").queryParam("Image", "coup1")
 				.accept(MediaType.APPLICATION_XML).get(String.class);
