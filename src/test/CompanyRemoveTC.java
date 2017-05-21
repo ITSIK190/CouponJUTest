@@ -9,12 +9,17 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import a.all.AllTests;
 import a.all.UnMarHelpers;
+import c.hlp.CouponResponse;
 import c.hlp.CustomerResponse;
 
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CompanyRemoveTC {
 
 	@BeforeClass
@@ -46,15 +51,15 @@ public class CompanyRemoveTC {
 		
 		
 		
-		CustomerResponse customerResponse = new CustomerResponse();
+		CouponResponse couponResponse = new CouponResponse();
 		try {
-			customerResponse = UnMarHelpers.unmarshallCustomer(AllTests.token);
+			couponResponse = UnMarHelpers.unmarshallCoupon(AllTests.token);
 		} catch (JAXBException e1) {
 			// TODO Auto-generated catch block
 			fail(e1.getMessage());
 		}
-		System.out.println(customerResponse.getMessage());
-		assertEquals("success", customerResponse.getMessage());
+		System.out.println(couponResponse.getMessage());
+		assertEquals("success", couponResponse.getMessage());
 
 	}
 	

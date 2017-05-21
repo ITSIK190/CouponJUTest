@@ -9,13 +9,16 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import a.all.AllTests;
 import a.all.UnMarHelpers;
 import c.hlp.CompanyResponse;
 import c.hlp.CouponResponse;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CompanyCreateTC {
 
 	@BeforeClass

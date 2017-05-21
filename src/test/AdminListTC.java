@@ -142,22 +142,22 @@ public class AdminListTC {
 			System.out.println("Token: " + AllTests.token);
 			
 			
-			CompanyResponse companyResponse = new CompanyResponse();
+			CustomerResponse customerResponse = new CustomerResponse();
 			try {
-				companyResponse = UnMarHelpers.unmarshallCompany(AllTests.token);
+				customerResponse = UnMarHelpers.unmarshallCustomer(AllTests.token);
 			} catch (JAXBException e1) {
 				// TODO Auto-generated catch block
 				fail(e1.getMessage());
 			}
 			
-			assertEquals("success", companyResponse.getMessage());
-			ArrayList<Company> companies = companyResponse.getCompanies();
+			assertEquals("success", customerResponse.getMessage());
+			ArrayList<Customer> customers = customerResponse.getCustomers();
 			
 			
-			Company company = companies.get(0);
+			Customer customer = customers.get(0);
 			
-			System.out.println(company);
-			assertEquals(company.getName(), "comp1");
+			System.out.println(customer);
+			assertEquals(customer.getName(), "cust1");
 		}
 		
 		@Test

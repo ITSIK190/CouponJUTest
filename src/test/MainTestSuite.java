@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ AdminCreateTC.class, CompanyCreateTC.class, CustomerCreateTC.class, AdminListTC.class,
-		CompanyListTC.class, CustomerListTC.class, CustomerRemoveTC.class, CompanyRemoveTC.class, AdminRemoveTC.class })
+		CompanyListTC.class, CustomerListTC.class, CompanyRemoveTC.class, AdminRemoveTC.class })
 public class MainTestSuite {
 
 }
